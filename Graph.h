@@ -1,7 +1,7 @@
 /*****************************************************************************
 *    Brian Chairez                                                           *
 *    Goal: Implementation of Graph using a list of lists                     *
-*    Progess: Basic implementation and methods complete                      *
+*    Progess: update erase_neighbors() to function correctly                 *
 *****************************************************************************/
 
 #ifndef GRAPH_H
