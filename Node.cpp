@@ -88,7 +88,7 @@ bool Node<T>::contains(Node<T>*& node) const {
     }
 
     for (typename std::list<Node<T>*>::const_iterator it = edge_list_.begin(); it != edge_list_.end(); ++ it) {
-        if ((*it) == node) {
+        if ((*it)->getData() == node->getData()) {
             return true;
         }
     }
@@ -128,7 +128,7 @@ template <class T>
 typename std::list<Node<T>*>::iterator Node<T>::search_(Node<T>*& node) {
     typename std::list<Node<T>*>::iterator it = edge_list_.begin();
     for (; it != edge_list_.end(); ++it) {
-        if ((*it) == node) {
+        if ((*it)->getData() == node->getData()) {
             return it;
         }
     }
