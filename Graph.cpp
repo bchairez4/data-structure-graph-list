@@ -3,19 +3,23 @@
 /*****************************************************************************
     Constructors/Destructor
 *****************************************************************************/
+// Time Complexity: O(1)
 template <class T>
 Graph<T>::Graph() {}
 
+// Time Complexity: O(NM), where N is the number of nodes in the adjacency list and M is the number of edges in the edge list
 template <class T>
 Graph<T>::Graph(const std::list<Node<T>*>& adjacency_list) {
     copy_(adjacency_list);
 }
 
+// Time Complexity: O(NM), where N is the number of nodes in the adjacency list and M is the number of edges in the edge list in other
 template <class T>
 Graph<T>::Graph(const Graph<T>& other) {
     copy_(other.adjacency_list_);
 }
 
+// Time Complexity: O(N), where N is the number of nodes in the adjacency list
 template <class T>
 Graph<T>::~Graph() {
     for (typename std::list<Node<T>*>::iterator it = adjacency_list_.begin(); it != adjacency_list_.end(); ++it) {
@@ -28,6 +32,7 @@ Graph<T>::~Graph() {
 /*****************************************************************************
     Operator Overload
 *****************************************************************************/
+// Time Complexity: O(NM), where N is the number of nodes in the adjacency list and M is the number of edges in the edge list in other
 template <class T>
 T& Graph<T>::operator=(const Graph<T>& other) {
     copy_(other.adjacency_list_);
@@ -36,6 +41,7 @@ T& Graph<T>::operator=(const Graph<T>& other) {
 /*****************************************************************************
     Data Manipulation
 *****************************************************************************/
+// Time Complexity: O(N), where N is the number of nodes in the adjacency list
 template <class T>
 void Graph<T>::insertVertex(const T& data) {
     if (contains(data)) {
@@ -46,6 +52,7 @@ void Graph<T>::insertVertex(const T& data) {
     adjacency_list_.push_back(new_node);
 }
 
+// Time Complexity: O(NM), where N is the number of nodes in the adjacency list and M is the number of edges in the edge list
 template <class T>
 void Graph<T>::removeVertex(const T& data) {
     if (!contains(data)) {
@@ -60,6 +67,7 @@ void Graph<T>::removeVertex(const T& data) {
     adjacency_list_.erase(it);
 }
 
+// Time Complexity: O(N), where N is the number of nodes in the adjacency list
 template <class T>
 void Graph<T>::addEdge(const T& data1, const T& data2) {
     if (!contains(data1) || !contains(data2)) {
@@ -73,6 +81,7 @@ void Graph<T>::addEdge(const T& data1, const T& data2) {
     (*data1_it)->addEdge(data2_node_ptr);
 }
 
+// Time Complexity: O(N), where N is the number of nodes in the adjacency list
 template <class T>
 void Graph<T>::removeEdge(const T& data1, const T& data2) {
     if (!contains(data1) || !contains(data2)) {
@@ -89,11 +98,13 @@ void Graph<T>::removeEdge(const T& data1, const T& data2) {
 /*****************************************************************************
     Data Observation
 *****************************************************************************/
+// Time Complexity: O(1)
 template <class T>
 std::list<Node<T>*> Graph<T>::getAdjacencyList() const {
     return adjacency_list_;
 }
 
+// Time Complexity: O(N), where N is the number of nodes in the adjacency list
 template <class T>
 bool Graph<T>::contains(const T& data) const {
     if (empty()) {
@@ -109,16 +120,19 @@ bool Graph<T>::contains(const T& data) const {
     return false;
 }
 
+// Time Complexity: O(1)
 template <class T>
 bool Graph<T>::empty() const {
     return adjacency_list_.empty();
 }
 
+// Time Complexity: O(1)
 template <class T>
 int Graph<T>::size() const {
     return adjacency_list_.size();
 }
 
+// Time Complexity: O(NM), where N is the number of nodes in the adjacency list and M is the number of edges in the edge list
 template <class T>
 void Graph<T>::printAdjacencyList() const {
     for (typename std::list<Node<T>*>::const_iterator it = adjacency_list_.begin(); it != adjacency_list_.end(); ++it) {
@@ -130,6 +144,7 @@ void Graph<T>::printAdjacencyList() const {
 /*****************************************************************************
     Private Functions
 *****************************************************************************/
+// Time Complexity: O(N), where N is the number of nodes in the adjacency list
 template <class T>
 typename std::list<Node<T>*>::iterator Graph<T>::search_(const T& data) {
     typename std::list<Node<T>*>::iterator it = adjacency_list_.begin();
@@ -142,6 +157,7 @@ typename std::list<Node<T>*>::iterator Graph<T>::search_(const T& data) {
     return it;
 }
 
+// Time Complexity: O(NM), where N is the number of nodes in the adjacency list and M is the number of edges in the edge list
 template <class T>
 void Graph<T>::copy_(const std::list<Node<T>*>& adjacency_list) {
     for (typename std::list<Node<T>*>::const_iterator it = adjacency_list.begin(); it != adjacency_list.end(); ++it) {
@@ -150,6 +166,7 @@ void Graph<T>::copy_(const std::list<Node<T>*>& adjacency_list) {
     }
 }
 
+// Time Complexity: O(NM), where N is the number of nodes in the adjacency list and M is the number of edges in the edge list
 template <class T>
 void Graph<T>::erase_neighbors_(Node<T>*& node) {
     for (typename std::list<Node<T>*>::iterator it = adjacency_list_.begin(); it != adjacency_list_.end(); ++it) {
