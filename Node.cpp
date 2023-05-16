@@ -133,6 +133,14 @@ void Node<T>::printEdgeList() const {
 *****************************************************************************/
 // Time Complexity: O(N), where N is the number of edges in the edge list
 template <class T>
+void Node<T>::copy_(const std::list<Node<T>*>& edge_list) {
+    for (typename std::list<Node<T>*>::const_iterator it = edge_list.cbegin(); it != edge_list.cend(); ++it) {
+        edge_list_.push_back((*it));
+    }
+}
+
+// Time Complexity: O(N), where N is the number of edges in the edge list
+template <class T>
 typename std::list<Node<T>*>::iterator Node<T>::search_(Node<T>*& node) {
     typename std::list<Node<T>*>::iterator it = edge_list_.begin();
     for (; it != edge_list_.end(); ++it) {
@@ -142,12 +150,4 @@ typename std::list<Node<T>*>::iterator Node<T>::search_(Node<T>*& node) {
     }
 
     return it;
-}
-
-// Time Complexity: O(N), where N is the number of edges in the edge list
-template <class T>
-void Node<T>::copy_(const std::list<Node<T>*>& edge_list) {
-    for (typename std::list<Node<T>*>::const_iterator it = edge_list.cbegin(); it != edge_list.cend(); ++it) {
-        edge_list_.push_back((*it));
-    }
 }
