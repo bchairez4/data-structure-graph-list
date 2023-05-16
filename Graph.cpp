@@ -111,7 +111,7 @@ bool Graph<T>::contains(const T& data) const {
         return false;
     }
 
-    for (typename std::list<Node<T>*>::const_iterator it = adjacency_list_.begin(); it != adjacency_list_.end(); ++it) {
+    for (typename std::list<Node<T>*>::const_iterator it = adjacency_list_.cbegin(); it != adjacency_list_.cend(); ++it) {
         if ((*it)->getData() == data) {
             return true;
         }
@@ -135,7 +135,7 @@ int Graph<T>::size() const {
 // Time Complexity: O(NM), where N is the number of nodes in the adjacency list and M is the number of edges in the edge list
 template <class T>
 void Graph<T>::printAdjacencyList() const {
-    for (typename std::list<Node<T>*>::const_iterator it = adjacency_list_.begin(); it != adjacency_list_.end(); ++it) {
+    for (typename std::list<Node<T>*>::const_iterator it = adjacency_list_.cbegin(); it != adjacency_list_.cend(); ++it) {
         std::cout << (*it)->getData() << ": ";
         (*it)->printEdgeList();
     }
@@ -160,7 +160,7 @@ typename std::list<Node<T>*>::iterator Graph<T>::search_(const T& data) {
 // Time Complexity: O(NM), where N is the number of nodes in the adjacency list and M is the number of edges in the edge list
 template <class T>
 void Graph<T>::copy_(const std::list<Node<T>*>& adjacency_list) {
-    for (typename std::list<Node<T>*>::const_iterator it = adjacency_list.begin(); it != adjacency_list.end(); ++it) {
+    for (typename std::list<Node<T>*>::const_iterator it = adjacency_list.cbegin(); it != adjacency_list.cend(); ++it) {
         Node<T>* new_node = new Node<T>((*it)->getData(), (*it)->getEdgeList());
         adjacency_list_.push_back(new_node);
     }
